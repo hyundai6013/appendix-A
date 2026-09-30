@@ -6,75 +6,101 @@
   <meta name="description" content="저장된 robots.txt 응답과 표본 자료의 재현 범위, 다운로드 및 실행 절차를 안내합니다.">
   <title>부록 A-2. 분석자료 및 재현 절차</title>
   <style>
-    :root { color-scheme: light; --ink: #202a35; --muted: #596674; --navy: #183951; --line: #d9e0e6; --soft: #f4f7f9; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: #fff; color: var(--ink); font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; font-size: 14px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
-    a { color: var(--navy); text-underline-offset: 3px; }
-    a:hover { text-decoration-thickness: 2px; }
-    a:focus-visible, summary:focus-visible { outline: 3px solid #698ca6; outline-offset: 4px; }
-    .skip { position: absolute; left: 16px; top: -60px; padding: 8px 12px; background: #fff; z-index: 2; }
-    .skip:focus { top: 12px; }
-    .page { max-width: 960px; margin: 0 auto; padding: 0 28px; }
-    .top { border-bottom: 1px solid var(--line); }
-    nav { display: flex; flex-wrap: wrap; gap: 8px 28px; padding: 18px 0; }
-    nav a { text-decoration: none; color: var(--muted); }
-    nav a[aria-current="page"] { color: var(--navy); font-weight: 700; }
-    main { padding-top: 42px; padding-bottom: 48px; }
-    .eyebrow { margin: 0 0 7px; color: var(--muted); font-size: 12px; letter-spacing: .06em; }
-    h1 { margin: 0 0 16px; color: var(--navy); font-size: 28px; line-height: 1.45; letter-spacing: -.035em; font-weight: 700; }
-    h2 { margin: 0 0 14px; color: var(--navy); font-size: 19px; line-height: 1.5; letter-spacing: -.02em; }
-    h3 { margin: 22px 0 8px; font-size: 15px; }
-    p { margin: 0 0 14px; }
-    .intro { max-width: 800px; color: #384653; font-size: 15px; }
-    .scope { margin: 24px 0; padding: 20px 22px; background: var(--soft); border-left: 3px solid var(--navy); }
-    .scope h2 { margin-bottom: 10px; font-size: 16px; }
-    .scope p:last-child { margin-bottom: 0; }
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 22px 0 10px; }
-    .button { display: inline-block; padding: 10px 17px; border: 1px solid var(--navy); border-radius: 3px; text-decoration: none; font-weight: 700; }
-    .button.primary { color: #fff; background: var(--navy); }
-    .button.secondary { background: #fff; }
-    .note { font-size: 13px; color: var(--muted); }
-    section { margin-top: 38px; padding-top: 28px; border-top: 1px solid var(--line); }
-    .table-wrap { overflow-x: auto; margin: 16px 0 12px; }
-    table { border-collapse: collapse; width: 100%; text-align: left; font-variant-numeric: tabular-nums; }
-    caption { padding: 0 0 9px; text-align: left; font-size: 13px; color: var(--muted); }
-    th, td { padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
-    thead th { background: var(--soft); color: var(--navy); border-top: 1px solid var(--line); font-weight: 700; }
-    tbody th { font-weight: 400; width: 65%; }
-    td { white-space: nowrap; }
-    ol, ul { margin: 12px 0 18px; padding-left: 24px; }
-    li { margin: 5px 0; padding-left: 2px; }
-    code { font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: .94em; overflow-wrap: anywhere; }
-    p code, li code { padding: 1px 4px; background: var(--soft); border-radius: 2px; }
-    pre { margin: 12px 0 16px; padding: 17px 19px; overflow-x: auto; background: #f5f7f9; border: 1px solid var(--line); border-radius: 3px; line-height: 1.75; white-space: pre; word-break: normal; overflow-wrap: normal; }
-    pre code { overflow-wrap: normal; }
-    details { margin: 20px 0; border: 1px solid var(--line); padding: 13px 16px; }
-    summary { cursor: pointer; color: var(--navy); font-weight: 700; }
-    details[open] summary { margin-bottom: 12px; }
-    details pre:last-child { margin-bottom: 0; }
-    .files { margin-bottom: 0; }
-    footer { border-top: 1px solid var(--line); padding: 22px 0 30px; color: var(--muted); font-size: 12px; }
-    footer p { margin: 0; }
-    @media (max-width: 600px) {
-      .page { padding-left: 20px; padding-right: 20px; }
-      main { padding-top: 28px; }
-      h1 { font-size: 23px; }
-      .intro { font-size: 14px; }
-      .scope { padding: 17px 18px; }
-      th, td { padding: 10px; }
-      .actions { align-items: stretch; }
-      .button { text-align: center; width: 100%; }
-      pre { padding: 14px; font-size: 12px; }
-    }
-    @media print {
-      .page { max-width: none; padding: 0; }
-      body { font-size: 10pt; }
-      .skip, .top, .actions { display: none; }
-      main { padding: 0; }
-      section { break-inside: avoid; }
-      pre { white-space: pre-wrap; }
-      a { color: inherit; }
-    }
+:root { color-scheme: light; --ink: #202a35; --muted: #596674; --navy: #183951; --line: #d9e0e6; --soft: #f4f7f9; }
+* { box-sizing: border-box; }
+html { scroll-padding-top: 20px; }
+body { margin: 0; background: #fff; color: var(--ink); font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; font-size: 14px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+a { color: var(--navy); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid #698ca6; outline-offset: 4px; }
+.skip { position: absolute; left: 16px; top: -60px; padding: 8px 12px; background: #fff; z-index: 4; }
+.skip:focus { top: 12px; }
+.page { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+.top { background: #fff; border-bottom: 1px solid var(--line); }
+nav { display: flex; flex-wrap: wrap; gap: 0 28px; }
+nav a { display: block; padding: 19px 0 15px; border-bottom: 3px solid transparent; text-decoration: none; color: var(--muted); line-height: 1.5; }
+nav a[aria-current="page"] { border-bottom-color: var(--navy); color: var(--navy); font-weight: 700; }
+main.page { padding-top: 40px; padding-bottom: 56px; }
+.eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 12px; letter-spacing: .04em; }
+h1 { margin: 0 0 16px; color: var(--navy); font-size: 28px; line-height: 1.45; letter-spacing: -.035em; font-weight: 700; }
+h2 { margin: 0 0 14px; color: var(--navy); font-size: 19px; line-height: 1.5; letter-spacing: -.02em; }
+h3 { margin: 22px 0 8px; font-size: 15px; }
+p { margin: 0 0 14px; }
+.intro { max-width: 880px; color: #384653; font-size: 15px; }
+.scope { margin: 24px 0; padding: 20px 22px; background: var(--soft); border-left: 3px solid var(--navy); }
+.scope h2 { margin-bottom: 10px; font-size: 16px; }
+.scope p:last-child { margin-bottom: 0; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 22px 0 10px; }
+.button { display: inline-block; padding: 10px 17px; border: 1px solid var(--navy); border-radius: 3px; text-decoration: none; font-weight: 700; }
+.button.primary { color: #fff; background: var(--navy); }
+.button.secondary { background: #fff; }
+.note { font-size: 13px; color: var(--muted); }
+.summary { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 22px 0 12px; color: var(--muted); font-size: 13px; }
+.summary strong { color: var(--navy); font-size: 16px; font-variant-numeric: tabular-nums; }
+section { margin-top: 38px; padding-top: 28px; border-top: 1px solid var(--line); }
+.table-wrap { overflow-x: auto; margin: 16px 0 12px; border-top: 1px solid var(--line); }
+table { border-collapse: separate; border-spacing: 0; width: 100%; text-align: left; font-variant-numeric: tabular-nums; }
+caption { padding: 0 0 10px; text-align: left; font-size: 13px; color: var(--muted); }
+th, td { padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { background: var(--soft); color: var(--navy); font-weight: 700; }
+tbody th { font-weight: 400; }
+tbody tr:nth-child(even) { background: #fafbfc; }
+.summary-table tbody th { width: 65%; }
+.summary-table td { white-space: nowrap; }
+.record-table { min-width: 1024px; table-layout: fixed; font-size: 13px; line-height: 1.65; }
+.record-table col.no { width: 6%; }
+.record-table col.stratum { width: 12%; }
+.record-table col.name { width: 15%; }
+.record-table col.domain { width: 19%; }
+.record-table col.type { width: 16%; }
+.record-table col.source { width: 32%; }
+.record-table thead th { position: sticky; top: 0; z-index: 1; box-shadow: inset 0 -1px var(--line); }
+.record-table tbody th, .record-table thead th:first-child { text-align: right; }
+.record-table tbody th { color: var(--muted); }
+.record-table td { white-space: pre-line; overflow-wrap: anywhere; }
+.record-table tr:target { background: #eaf1f6; outline: 2px solid #698ca6; outline-offset: -2px; }
+.record-table tr { scroll-margin-top: 48px; }
+.scroll-note { display: none; }
+ol, ul { margin: 12px 0 18px; padding-left: 24px; }
+li { margin: 5px 0; padding-left: 2px; }
+code { font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: .94em; overflow-wrap: anywhere; }
+p code, li code { padding: 1px 4px; background: var(--soft); border-radius: 2px; }
+pre { margin: 12px 0 16px; padding: 17px 19px; overflow-x: auto; background: #f5f7f9; border: 1px solid var(--line); border-radius: 3px; line-height: 1.75; white-space: pre; word-break: normal; overflow-wrap: normal; }
+pre code { overflow-wrap: normal; }
+details { margin: 20px 0; border: 1px solid var(--line); padding: 13px 16px; }
+summary { cursor: pointer; color: var(--navy); font-weight: 700; }
+details[open] summary { margin-bottom: 12px; }
+details pre:last-child, .files { margin-bottom: 0; }
+footer { border-top: 1px solid var(--line); padding: 22px 0 30px; color: var(--muted); font-size: 12px; }
+footer p { margin: 0; }
+@media (max-width: 1100px) { .scroll-note { display: block; } }
+@media (max-width: 600px) {
+  .page { padding-left: 20px; padding-right: 20px; }
+  main.page { padding-top: 28px; padding-bottom: 40px; }
+  nav { gap: 0 20px; font-size: 12px; }
+  nav a { padding-top: 16px; padding-bottom: 12px; }
+  h1 { font-size: 23px; }
+  .intro { font-size: 14px; }
+  .scope { padding: 17px 18px; }
+  th, td { padding: 10px; }
+  .actions { align-items: stretch; }
+  .button { text-align: center; width: 100%; }
+  pre { padding: 14px; font-size: 12px; }
+}
+@media print {
+  .page { max-width: none; padding: 0; }
+  body { font-size: 10pt; }
+  .skip, .top, .actions, .scroll-note { display: none; }
+  main.page { padding: 0; }
+  .table-wrap { overflow: visible; }
+  .record-table { min-width: 0; font-size: 8pt; }
+  .record-table th, .record-table td { padding: 4px; }
+  thead { display: table-header-group; }
+  .record-table thead th { position: static; }
+  tr { break-inside: avoid; }
+  pre { white-space: pre-wrap; }
+  a { color: inherit; }
+}
   </style>
 </head>
 <body>
@@ -83,7 +109,7 @@
     <div class="page">
       <nav aria-label="온라인 부록">
         <a href="../a-1/">부록 A-1. 표본 프레임</a>
-        <a href="./" aria-current="page">부록 A-2. 분석자료 및 재현 절차</a>
+        <a href="../a-2/" aria-current="page">부록 A-2. 분석자료 및 재현 절차</a>
       </nav>
     </div>
   </header>
@@ -110,7 +136,7 @@
       <h2 id="verified-title">1. 확인된 재현 결과</h2>
       <p>2026년 9월 30일 Windows·Python 3.12.14 환경에서 실행했습니다. 표본 프레임·최초 수집·재시도 자료로 복원한 <strong>1,199행×46열</strong>이 최종 입력 CSV와 모든 셀에서 일치했습니다. 저장 원문을 재판정한 long 파일 <strong>17,216행×16열</strong>과 wide 파일 <strong>1,076행×55열</strong>도 보존된 판정표와 모든 셀에서 일치했습니다.</p>
       <div class="table-wrap">
-        <table>
+        <table class="summary-table">
           <caption>보존 자료와 비교한 주요 집계</caption>
           <thead><tr><th scope="col">항목</th><th scope="col">결과</th></tr></thead>
           <tbody>
@@ -178,7 +204,7 @@
   </main>
   <footer>
     <div class="page">
-      <p>부록 A-2 · 분석자료 및 재현 절차 · 정리·검증 기준일: <time datetime="2026-09-30">2026-09-30</time></p>
+      <p>온라인 부록 · 2026년 7월 조사 자료 · 정리·검증 기준일: <time datetime="2026-09-30">2026-09-30</time></p>
     </div>
   </footer>
 </body>
